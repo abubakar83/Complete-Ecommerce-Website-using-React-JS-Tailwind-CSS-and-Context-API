@@ -1,6 +1,6 @@
 import { MapPin } from 'lucide-react'
 import { FaCaretDown } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const Navbar = () => {
   const location = false
@@ -16,6 +16,18 @@ const Navbar = () => {
           <FaCaretDown/>
         </div>
         </div>
+        {/* Menu Section */}
+        <nav>
+          <ul className="flex gap-7 items-center text-xl font-semibold">
+            <NavLink to={"/"}><li>Home</li></NavLink>
+            <NavLink to={"products"}><li>Products</li></NavLink>
+            <NavLink to={"about"}><li>About</li></NavLink>
+            <NavLink to={"contact"}><li>Contact</li></NavLink>
+            
+            
+            
+          </ul>
+        </nav>
       </div>
     </div>
   )
