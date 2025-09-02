@@ -19,10 +19,10 @@ const Navbar = () => {
         {/* Menu Section */}
         <nav>
           <ul className="flex gap-7 items-center text-xl font-semibold">
-            <NavLink to={"/"}><li>Home</li></NavLink>
-            <NavLink to={"products"}><li>Products</li></NavLink>
-            <NavLink to={"about"}><li>About</li></NavLink>
-            <NavLink to={"contact"}><li>Contact</li></NavLink>
+            <NavLink to={"/"} className={({isActive}) => `${isActive ? "border-b-3 border-red-500 transition-all" : "text-black"} cursor-pointer`}><li>Home</li></NavLink>
+            <NavLink to={"products"} className={({isActive}) => `${isActive ? "border-b-3 border-red-500 transition-all" : "text-black"} cursor-pointer`}><li>Products</li></NavLink>
+            <NavLink to={"about"} className={({isActive}) => `${isActive ? "border-b-3 border-red-500 transition-all" : "text-black"} cursor-pointer`}><li>About</li></NavLink>
+            <NavLink to={"contact"} className={({isActive}) => `${isActive ? "border-b-3 border-red-500 transition-all" : "text-black"} cursor-pointer`}><li>Contact</li></NavLink>
             
             
             
