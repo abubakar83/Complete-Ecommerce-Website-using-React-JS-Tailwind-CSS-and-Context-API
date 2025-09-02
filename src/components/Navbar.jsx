@@ -1,5 +1,7 @@
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
 import { MapPin } from "lucide-react";
 import { FaCaretDown } from "react-icons/fa";
+import { IoCartOutline } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -23,7 +25,7 @@ const Navbar = () => {
           </div>
         </div>
         {/* Menu Section */}
-        <nav>
+        <nav className="flex gap-7 items-center">
           <ul className="flex gap-7 items-center text-xl font-semibold">
             <NavLink
               to={"/"}
@@ -74,6 +76,18 @@ const Navbar = () => {
               <li>Contact</li>
             </NavLink>
           </ul>
+          <Link to={'/cart'} className="relative">
+          <IoCartOutline className="h-7 w-7"/>
+          <span className="bg-red-500 px-3 rounded-full absolute -top-3 -right-3 text-white">0</span>
+          </Link>
+          <div>
+            <SignedOut>
+        <SignInButton className="bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer"/>
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+          </div>
         </nav>
       </div>
     </div>
