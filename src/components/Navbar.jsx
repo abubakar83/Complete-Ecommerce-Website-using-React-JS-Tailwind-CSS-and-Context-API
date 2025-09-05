@@ -1,11 +1,15 @@
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
 import { MapPin } from "lucide-react";
 import { FaCaretDown } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 
-const Navbar = (location) => {
-  
+const Navbar = ({ location }) => {
   return (
     <div className="bg-white py-3 shadow-2xl">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
@@ -19,7 +23,11 @@ const Navbar = (location) => {
           <div className="flex gap-1 cursor-pointer text-gray-700 items-center">
             <MapPin className="text-red-500" />
             <span className="font-semibold">
-              {location ? <div>{location.state}</div> : "Add Address"}
+              {location ? 
+              <div className="-space-y-2">
+                <p>{location.county}</p>
+                <p>{location.state}</p>
+              </div> : "Add Address"}
             </span>
             <FaCaretDown />
           </div>
@@ -76,17 +84,19 @@ const Navbar = (location) => {
               <li>Contact</li>
             </NavLink>
           </ul>
-          <Link to={'/cart'} className="relative">
-          <IoCartOutline className="h-7 w-7"/>
-          <span className="bg-red-500 px-3 rounded-full absolute -top-3 -right-3 text-white">0</span>
+          <Link to={"/cart"} className="relative">
+            <IoCartOutline className="h-7 w-7" />
+            <span className="bg-red-500 px-3 rounded-full absolute -top-3 -right-3 text-white">
+              0
+            </span>
           </Link>
           <div>
             <SignedOut>
-        <SignInButton className="bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer"/>
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
+              <SignInButton className="bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer" />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
           </div>
         </nav>
       </div>
