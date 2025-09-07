@@ -46,3 +46,4 @@ in css file
 - @utility container {
     margin: auto    
 } 
+- md cell , code cell
