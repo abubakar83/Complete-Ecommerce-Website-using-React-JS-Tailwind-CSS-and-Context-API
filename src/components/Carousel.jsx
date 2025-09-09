@@ -1,6 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { DataContext } from "../context/DataContext";
-// 1
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
+
 const Carousel = () => {
   const { data, fetchingAllProducts } = useContext(DataContext);
 
@@ -8,12 +12,78 @@ const Carousel = () => {
     fetchingAllProducts();
   }, []);
 
-// 2
-  
+  // Custom Arrows
+  const SamplePrevArrow = (props) => {
+    const { style, onClick } = props;
+    return (
+      <div
+        onClick={onClick}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
+        style={{ ...style }}
+      >
+        <AiOutlineArrowLeft className="text-white bg-red-500 p-2 rounded-full text-3xl hover:scale-110 transition-transform" />
+      </div>
+    );
+  };
+
+  const SampleNextArrow = (props) => {
+    const { style, onClick } = props;
+    return (
+      <div
+        onClick={onClick}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 cursor-pointer"
+        style={{ ...style }}
+      >
+        <AiOutlineArrowRight className="text-white bg-red-500 p-2 rounded-full text-3xl hover:scale-110 transition-transform" />
+      </div>
+    );
+  };
+
+  // Slider settings
+  var settings = {
+    dots: false,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    infinite: true,
+    speed: 600,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    pauseOnHover: false,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024, // tablets & small desktops
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+        },
+      },
+      {
+        breakpoint: 768, // tablets & large phones
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false, // hide arrows for smaller screens
+          dots: true, // show dots for navigation
+        },
+      },
+      {
+        breakpoint: 480, // mobile
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          dots: true,
+        },
+      },
+    ],
+  };
 
   return (
     <div className="relative w-full">
-      {/* <Slider {...settings}> */}
+      <Slider {...settings}>
         {data?.slice(0, 7)?.map((item, index) => (
           <div
             key={index}
@@ -47,15 +117,12 @@ const Carousel = () => {
             </div>
           </div>
         ))}
-      {/* </Slider> */}
+      </Slider>
     </div>
   );
 };
 
 export default Carousel;
-
-
-
 
 // old code
 // import React, { useContext, useEffect } from 'react'
