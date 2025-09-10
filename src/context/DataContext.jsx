@@ -19,8 +19,18 @@ export const DataProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  const getUniqueCategory = (data, property) => {
+    if (!Array.isArray(data)) return []; // prevent error when data is null
+    let newVal = data.map((currElem) => currElem[property]);
+    newVal = [...new Set(newVal)];
+    return newVal;
+  };
+
+  const categoryOnlyData = getUniqueCategory(data, "category");
+
   return (
-    <DataContext.Provider value={{ data, setData, fetchingAllProducts }}>
+    <DataContext.Provider value={{ data, setData, fetchingAllProducts, categoryOnlyData }}>
       {children}
     </DataContext.Provider>
   );
