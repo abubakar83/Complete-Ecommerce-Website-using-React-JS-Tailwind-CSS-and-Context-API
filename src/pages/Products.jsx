@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useData } from "../context/DataContext";
 import FilterSection from "../components/FilterSection";
 import Loading from "../assets/Loading4.webm";
+import ProductCard from "../components/ProductCard";
 
 const Products = () => {
   const { data, fetchingAllProducts } = useData();
@@ -14,7 +15,13 @@ const Products = () => {
         {data?.length > 0 ? (
           <div className="flex gap-8">
             <FilterSection />
-            <div>{}</div>
+            <div>
+              {
+                data?.map((product, index) => {
+                  return <ProductCard key={index} product={product}/>
+                })
+              }
+              </div>
           </div>
         ) : (
           <div className="flex items-center justify-center h-[400px]">
