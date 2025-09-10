@@ -15,7 +15,7 @@ const Products = () => {
         {data?.length > 0 ? (
           <div className="flex gap-8">
             <FilterSection />
-            <div>
+            <div className="grid grid-cols-4 gap-7 mt-10">
               {
                 data?.map((product, index) => {
                   return <ProductCard key={index} product={product}/>
