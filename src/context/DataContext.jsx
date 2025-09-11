@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 export const DataContext = createContext(null);
 
 export const DataProvider = ({ children }) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]); // here was (null)
 
   //   fetching all products from API
   const fetchingAllProducts = async () => {
@@ -23,14 +23,15 @@ export const DataProvider = ({ children }) => {
   const getUniqueCategory = (data, property) => {
     if (!Array.isArray(data)) return []; // prevent error when data is null
     let newVal = data.map((currElem) => currElem[property]);
-    newVal = [...new Set(newVal)];
+    newVal = ["All", ...new Set(newVal)];
     return newVal;
   };
 
   const categoryOnlyData = getUniqueCategory(data, "category");
+  const brandOnlyData = getUniqueCategory(data, "brand")
 
   return (
-    <DataContext.Provider value={{ data, setData, fetchingAllProducts, categoryOnlyData }}>
+    <DataContext.Provider value={{ data, setData, fetchingAllProducts, categoryOnlyData, brandOnlyData }}>
       {children}
     </DataContext.Provider>
   );
