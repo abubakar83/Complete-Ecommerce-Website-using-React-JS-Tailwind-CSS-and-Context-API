@@ -4,7 +4,7 @@ import FilterSection from "../components/FilterSection";
 import Loading from "../assets/Loading4.webm";
 import ProductCard from "../components/ProductCard";
 import Pagination from "../components/Pagination";
-import notfound from "../assets/notfound.json"
+import notfound from "../assets/notfound.json";
 import Lottie from "lottie-react";
 
 const Products = () => {
@@ -14,6 +14,11 @@ const Products = () => {
   const [brand, setBrand] = useState("All");
   const [priceRange, setPriceRange] = useState([0, 5000]);
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    fetchingAllProducts();
+    window.scrollTo(0,0)
+  }, []);
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
@@ -38,9 +43,6 @@ const Products = () => {
   );
   const dynamicPage = Math.ceil(filteredData?.length / 8);
 
-  useEffect(() => {
-    fetchingAllProducts();
-  }, []);
   return (
     <div>
       <div className="max-w-6xl mx-auto px-4 mb-10">
@@ -75,8 +77,13 @@ const Products = () => {
                   />
                 </div>
               ) : (
-                <div className="flex justify-center items-center md-h-[600px] md-w[900px] mt-10">
-                  <Lottie animationData={notfound} className="w-[500px]"/>
+                <div className="flex justify-center items-center md:h-[600px] md:w-[900px] mt-10">
+                  <Lottie
+                    animationData={notfound}
+                    loop={true}
+                    autoplay={true}
+                    className="w-[300px] md:w-[500px]"
+                  />
                 </div>
               )}
             </div>
