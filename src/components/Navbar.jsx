@@ -11,9 +11,11 @@ import { IoCartOutline } from "react-icons/io5";
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
+import { useCart } from "../context/CartContext";
 
 const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const {cartItem} = useCart()
 
   const toggleDropDown = () => {
     setOpenDropdown(!openDropdown);
@@ -97,7 +99,7 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
           <Link to={"/cart"} className="relative">
             <IoCartOutline className="h-7 w-7" />
             <span className="bg-red-500 px-2 rounded-full absolute -top-2 -right-2 text-white text-sm">
-              0
+              {cartItem.length}
             </span>
           </Link>
           <div>
@@ -115,7 +117,7 @@ const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
           <Link to={"/cart"} className="relative">
             <IoCartOutline className="h-6 w-6" />
             <span className="bg-red-500 px-2 rounded-full absolute -top-2 -right-2 text-white text-xs">
-              0
+              {cartItem.length}
             </span>
           </Link>
           <button onClick={toggleMobileMenu}>
