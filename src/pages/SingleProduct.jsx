@@ -4,17 +4,18 @@ import { useParams } from "react-router-dom";
 import Loading from "../assets/Loading4.webm"
 import Breadcrums from "../components/Breadcrums";
 import { IoCartOutline } from "react-icons/io5";
+import { useCart } from "../context/CartContext";
+
 const SingleProduct = () => {
   const params = useParams();
   const [singleProduct, setSingleProduct] = useState("");
-
+  const {addToCart} = useCart()
   const getSingleProduct = async () => {
     try {
       const res = await axios.get(
         `https://fakestoreapi.com/products/${params.id}`
       );
       const product = res.data;
-      console.log(product);
       setSingleProduct(product);
     } catch (error) {
       console.log(error);
@@ -47,7 +48,7 @@ const SingleProduct = () => {
               <input type="number" min={1} value={1 } className="w-20 border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-red-500" />
             </div>
             <div className="flex gap-4 mt-4">
-              <button className="px-6 flex gap-2 py-2 text-lg bg-red-500 text-white rounded-md"><IoCartOutline className="w-6 h-6"/>Add to Cart</button>
+              <button onClick={() => addToCart(singleProduct)} className="px-6 flex gap-2 py-2 text-lg bg-red-500 text-white rounded-md"><IoCartOutline className="w-6 h-6"/>Add to Cart</button>
             </div>
             </div>
           </div>
