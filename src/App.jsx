@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "./components/Footer";
 import SingleProduct from "./pages/SingleProduct";
+import CategoryProduct from "./pages/CategoryProduct";
 
 const App = () => {
   const [location, setLocation] = useState();
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<SingleProduct />} />
+        <Route path="/category/:category" element={<CategoryProduct/>}></Route>
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contacts />} />
         <Route path="/cart" element={<Cart location={location} getLocation={getLocation}/>} />
